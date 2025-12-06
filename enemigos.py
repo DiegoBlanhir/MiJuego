@@ -15,4 +15,11 @@ def mover_enemigos(enemigos, ALTO):
 
 def dibujar_enemigos(pantalla, enemigos):
     for e in enemigos:
-        pygame.draw.rect(pantalla, (255, 0, 0), e)
+        # Cara de enemigo
+        pygame.draw.circle(pantalla, (150, 0, 0), e.center, 22)
+        pygame.draw.circle(pantalla, (255, 0, 0), e.center, 20)
+        pygame.draw.circle(pantalla, (255, 255, 255), (e.centerx - 7, e.centery - 3), 3)
+        pygame.draw.circle(pantalla, (255, 255, 255), (e.centerx + 7, e.centery - 3), 3)
+        pygame.draw.circle(pantalla, (0, 0, 0), (e.centerx - 7, e.centery - 3), 1)
+        pygame.draw.circle(pantalla, (0, 0, 0), (e.centerx + 7, e.centery - 3), 1)
+        pygame.draw.line(pantalla, (255, 255, 255), (e.centerx - 5, e.centery + 5), (e.centerx + 5, e.centery + 5), 2)
