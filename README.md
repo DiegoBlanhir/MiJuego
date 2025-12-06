@@ -1,4 +1,4 @@
-🚀 SPACE FLIGHT
+# 🚀 SPACE FLIGHT
 
 Un emocionante juego de acción desarrollado en Python con Pygame. ¡Evita enemigos, dispara balas y recoge monedas mientras compites por la mejor puntuación!
 
