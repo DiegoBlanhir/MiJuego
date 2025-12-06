@@ -11,4 +11,11 @@ def mover_balas(balas):
 
 def dibujar_balas(pantalla, balas):
     for b in balas:
-        pygame.draw.rect(pantalla, (255, 255, 255), b)
+        # Cuerpo de la bala
+        pygame.draw.rect(pantalla, (255, 255, 0), b)
+        pygame.draw.polygon(pantalla, (255, 165, 0), [
+            (b.centerx, b.top),
+            (b.left - 2, b.top + 3),
+            (b.right + 2, b.top + 3)
+        ])
+        pygame.draw.line(pantalla, (255, 255, 150), (b.left + 1, b.centery), (b.right - 1, b.centery), 1)
