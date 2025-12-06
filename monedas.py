@@ -15,4 +15,8 @@ def mover_monedas(monedas, ALTO):
 
 def dibujar_monedas(pantalla, monedas):
     for m in monedas:
-        pygame.draw.rect(pantalla, (255, 215, 0), m)
+        # Círculo exterior (dorado oscuro)
+        pygame.draw.circle(pantalla, (184, 134, 11), m.center, 12)
+        pygame.draw.circle(pantalla, (255, 215, 0), m.center, 10)
+        pygame.draw.circle(pantalla, (255, 255, 100), m.center, 5)
+        pygame.draw.line(pantalla, (184, 134, 11), (m.centerx - 8, m.centery), (m.centerx + 8, m.centery), 2)
