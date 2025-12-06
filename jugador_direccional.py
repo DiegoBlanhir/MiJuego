@@ -1,28 +1,27 @@
 import pygame
 
-FRAME_W = 64
-FRAME_H = 64
-COLUMNAS = 4
-FILAS = 4
-
 def cargar_sprite_sheet():
-    sheet = pygame.image.load("personaje_direcciones.png").convert_alpha()
+    try:
+        sheet = pygame.image.load("personaje_direcciones.png").convert_alpha()
+        # Escalar la imagen a un tamaño visible
+        sheet = pygame.transform.scale(sheet, (192, 192))
+    except:
+        # Si falla cargar la imagen, crear un sprite simple
+        sheet = pygame.Surface((192, 192))
+        pygame.draw.rect(sheet, (0, 100, 255), pygame.Rect(0, 0, 192, 192))
 
-    def obtener_frames(fila):
-        frames = []
-        for col in range(COLUMNAS):
-            rect = pygame.Rect(col * FRAME_W, fila * FRAME_H, FRAME_W, FRAME_H)
-            frames.append(sheet.subsurface(rect))
-        return frames
-
+    # Crear animaciones simplemente usando la misma imagen
+    # (4 frames de la misma imagen)
+    frame = pygame.transform.scale(sheet, (64, 64))
+    
     animaciones = {
-        "arriba": obtener_frames(0),
-        "izquierda": obtener_frames(1),
-        "abajo": obtener_frames(2),
-        "derecha": obtener_frames(3)
+        "arriba": [frame, frame, frame, frame],
+        "izquierda": [frame, frame, frame, frame],
+        "abajo": [frame, frame, frame, frame],
+        "derecha": [frame, frame, frame, frame]
     }
 
-    rect = animaciones["abajo"][0].get_rect(center=(400, 500))
+    rect = frame.get_rect(center=(400, 500))
     return animaciones, rect, "abajo", 0, pygame.time.get_ticks()
 
 def mover_jugador_direccional(teclas, rect, ANCHO, ALTO):
@@ -62,4 +61,5 @@ def animar_sprite(animaciones, direccion, frame, ultimo_tiempo, moviendo):
     return frame, ultimo_tiempo
 
 def dibujar_jugador_direccional(pantalla, animaciones, direccion, frame, rect):
+
     pantalla.blit(animaciones[direccion][frame], rect)
